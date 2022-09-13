@@ -33,7 +33,7 @@
                     <div class="form-group">
                         <input name="released" class="form-control" placeholder="Released" autofocus>
                     </div>
-                    <button type="submit" class="btn btn-success btn-block" name="saveTask" value="Save Task" onclick="clearMessage()">Save Task</button>
+                    <button type="submit" class="btn btn-success btn-block" name="saveTask" value="Save Album" onclick="clearMessage()">Save Album</button>
                 </form>
             </div>
         </div>

@@ -8,7 +8,7 @@ if(isset($_POST["saveTask"])){
    $tracksAmount = $_POST["tracksAmount"];
    $released = $_POST["released"];
   
-   $sql = "INSERT INTO album (band, title,tracksAmount,released) VALUES('{$band}','{$title}','{$tracksAmount}','{$released}')";
+   $sql = "INSERT INTO album (band, title,tracksAmount,released) VALUES(\"{$band}\",'{$title}','{$tracksAmount}','{$released}')";
    $result = mysqli_query($conn, $sql);
    mysqli_close($conn);
    if(!$result){
