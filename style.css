@@ -1,0 +1,23 @@
+    * {
+        margin: 0;
+        padding: 0;
+    }
+    i.fa-trash{
+       color: rgb(218, 9, 9);
+       margin-left: 10px;
+    }
+    i.fa-pencil{
+        color: rgb(53, 53, 183);
+        margin-left: 10px;
+     }
+    form div.form-group input {
+        margin: 20px 0;
+    }
+    
+    form button {
+        margin: 20px 0;
+        width: 350px;
+    }
+    a{
+        text-decoration: none;
+    }
