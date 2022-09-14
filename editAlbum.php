@@ -1,5 +1,6 @@
 <?php
-include("connectdb.php");
+include("functions.php");
+session_start();
 $band = "";
 $title = "";
 $tracksAmount = "";
@@ -8,13 +9,14 @@ $released = "";
 if (isset($_GET["id"])) {
     $id = $_GET["id"];
     $sql = "SELECT * FROM album WHERE id = $id";
-    $result = mysqli_query($conn, $sql);
-    if (mysqli_num_rows($result) == 1) {
-        $row = mysqli_fetch_array($result);
-        $band = $row["band"];
-        $title = $row["title"];
-        $tracksAmount = $row["tracksAmount"];
-        $released = $row["released"];
+    $albums = selectAlbum($sql);
+    if($albums){
+        foreach($albums as $album){
+            $band = $album["band"];
+            $title = $album["title"];
+            $tracksAmount = $album["tracksAmount"];
+            $released = $album["released"];
+        }
     }
 }
 if (isset($_POST["update"])) {
@@ -25,8 +27,8 @@ if (isset($_POST["update"])) {
     $released = $_POST["released"];
 
     $sql = "UPDATE album SET band = '$band', title = '$title', tracksAmount = '$tracksAmount', released = '$released' WHERE id = $id";
-    mysqli_query($conn, $sql);
-    $_SESSION["message"] = "Task updated successfully";
+    updateAlbum($sql);
+    $_SESSION["message"] = "Album updated successfully";
     $_SESSION["message_type"] = "warning";
     header("location:index.php");
 }
@@ -36,7 +38,7 @@ if (isset($_POST["update"])) {
     <div class="row">
         <div class="col-md-4 mx-auto">
             <div class="card card-body">
-                <form action="editTask.php?id=<?php echo $_GET["id"]?>" method="POST">
+                <form action="editAlbum.php?id=<?php echo $_GET["id"] ?>" method="POST">
                     <div class="form-group">
                         <input name="band" type="text" class="form-control" value="<?php echo $band; ?>" placeholder="Update Band">
                     </div>
@@ -49,7 +51,7 @@ if (isset($_POST["update"])) {
                     <div class="form-group">
                         <input name="released" type="number" class="form-control" value="<?php echo $released; ?>" placeholder="Update Released">
                     </div>
-                    <button class="btn-success" name="update">Update</button>  
+                    <button class="btn-success" name="update">Update Album</button>
                 </form>
             </div>
         </div>
